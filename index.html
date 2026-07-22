@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADMIN Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="spy-style.css">
+
+</head>
+<body>
+
+<svg class="grain" width="100%" height="100%">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#n)"/>
+</svg>
+<div class="atmosphere"></div>
+
+<!-- Nav -->
+<nav class="top-nav" id="topNav">
+  <a href="#" class="nav-brand">SCARY TOWN<span>Systm</span></a>
+</a>
+  <ul class="nav-links">
+    <li><a href="#staff"> جدول الباندات </a></li>
+    <li><a href="#rules">  مسؤولين المسؤولية </a></li>
+   <li><a href="#faq">الأرشيف</a></li>
+
+
+  </ul>
+  <a href="#staff" class="nav-cta">الجدول الرئيسي</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span class="toggle-bar"></span><span class="toggle-bar"></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-links">
+      <a href="#" class="mobile-menu-link" data-index="01">الرئيسية</a>
+      <a href="#staff" class="mobile-menu-link" data-index="02"> جدول الباندات</a>
+      <a href="#rules" class="mobile-menu-link" data-index="05">مسؤولين الباند </a>
+            <a href="#faq" class="mobile-menu-link" data-index="06">الأرشيف</a>
+
+
+    </div>
+    <div class="mobile-menu-footer">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- Side Panels -->
+<nav class="side-panel left" aria-label="Scroll indicators">
+  <span class="side-label">Scroll</span>
+  <div class="side-track"><div class="side-track-fill" id="leftTrack"></div></div>
+  <div class="side-dot active"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-readout" id="scrollPct">00</div>
+</nav>
+
+<nav class="side-panel right" aria-label="Status indicators">
+  <span class="side-label">Status</span>
+  <div class="side-track"><div class="side-track-fill" id="rightTrack"></div></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot active"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-readout">LMN</div>
+</nav>
+
+<main class="main">
+
+<!--  قسم Hero -->
+<section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>نظام الإدارة العام </span>
+    </div>
+    <h1> <em>Scary Town</em><br></h1>
+    <p class="hero-sub"><strong><b>
+نظام الإدارة المركزي لسيرفر Scary Town، يوفّر للإداريين منصة موحدة للوصول إلى جدول الباندات، العقوبات، المخالفات، والإجراءات التنظيمية، بهدف تعزيز الكفاءة والالتزام داخل المسؤولية بشكل افضل .
+    </strong></b></p>
+  
+
+
+    <div class="hero-ctas">
+      <a href="#staff" class="btn-primary">جدول الباندات</a>
+      <a href="#rules" class="btn-secondary">مسؤولين الباند</a>
+      
+    </div>
+    <!-- Metrics -->
+    <div class="hero-metrics">
+      <div class="metric">
+        <div class="metric-value"><span class="counter" data-target="98" data-decimals="0">0</span><span>%</span></div>
+        <div class="metric-label">نسبة حل مشكلتك !</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value"><span class="counter" data-target="420" data-decimals="0">0</span><span>+</span></div>
+        <div class="metric-label"> إداري متفاعل </div>
+      </div>
+    </div>
+</section>
+
+  <!-- ═══ LOGO TICKER ═══ -->
+  <div class="logo-ticker">
+    <div class="logo-ticker-label">Scary Town</div>
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item"> اداره متفاعله </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> مسؤوليات ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> قوانين ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تحكم كامل </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تركيز عالي </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تنظيم اداري </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> انظمة ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> سستم متكامل </span><span class="ticker-dot"></span>
+      <!-- Duplicated for seamless loop -->
+      <span class="ticker-item"> اداره متفاعله </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> مسؤوليات ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> قوانين ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تحكم كامل </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تركيز عالي </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> تنظيم اداري </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> انظمة ادارية </span><span class="ticker-dot"></span>
+      <span class="ticker-item"> سستم متكامل </span><span class="ticker-dot"></span>
+    
+  </div>
+</div>
+  <!-- ═══ FEATURES ═══ -->
+ <section class="section section-center" id="staff">
+
+    <p class="section-tag reveal">Banned Systm</p>
+    <h2 class="section-title reveal">
+        جدول الباندات <strong> الخاص بالباند تيم</strong>
+    </h2>
+
+    <div class="rank-section reveal">
+
+        <h3 class="rank-title"> جدول العقوبات </h3>
+
+<div class="smart-search">
+
+    <div class="search-box">
+
+        <svg class="search-icon" viewBox="0 0 24 24">
+            <path d="M21 21l-4.3-4.3m1.8-5.2a7 7 0 11-14 0 7 7 0 0114 0z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"/>
+        </svg>
+
+        <input
+            type="text"
+            id="smartSearch"
+            placeholder="ابحث عن مخالفة أو مدة أو ملاحظة..."
+            autocomplete="off">
+
+        <button id="clearSearch">✕</button>
+<div id="searchSuggestions" class="search-suggestions"></div>
+
+    </div>
+
+    <div id="searchInfo"></div>
+
+</div>
+
+        <table class="rank-table">
+
+            <thead>
+                <tr>
+                    <th width="80">العقوبه</th>
+                    <th width="260">المخالفة</th>
+                    <th>الملاحظه</th>
+                </tr>
+            </thead>
+<tbody>
+
+<tr>
+<td>6 Hours</td>
+<td> مخالفة قوانين السيرفر 1 </td>
+<td>
+🟢 الحالة: تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>6 Hours</td>
+<td> استخراج السلاح او التلويح به في منطقه آمنه</td>
+<td>
+🟢 الحالة: تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>6 Hours</td>
+<td> اسلوب هابط </td>
+<td>
+🟢 الحالة: تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>6 Hours</td>
+<td> تعبئة البيانات في وجود مسعفين </td>
+<td>
+🟢 الحالة: تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>6 Hours</td>
+<td> معالجة شخص و اخذه رهينه</td>
+<td>
+🔴  الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>8 Hours</td>
+<td>عدم حمل تصوير</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>8 Hours</td>
+<td>إيموت في فايت</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>12 Hours</td>
+<td>تدخل في سيناريو</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>12 Hours</td>
+<td>إهانة جثة</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>VDM</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>RDM</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>Meta Gaming</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>قتل + خطف + ضرب (في منطقة آمنة)</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>مقاومة عدد أكبر</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>محاولة افتعال فايت + فايت بدون سبب</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>رجوع للحالة بعد الإسقاط</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>إطلاق النار أثناء القيادة</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>سرقة بدون تخطيط بداعي الفايت</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>إطلاق نار في منطقة آمنة</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day</td>
+<td>القتل بدون تهديد</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>1 Day </td>
+<td> مخالفة قوانين السيرفر 2 </td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>تخريب سيناريو</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار يتحول إلى نهائي
+</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>عدم تقدير الحياة</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>التحلل في وسط سيناريو</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>عدم احترام إداري</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>الاستفزاز بشكل غير منطقي</td>
+<td>🟢 الحالة: تقديرية</td>
+</tr>
+
+<tr>
+<td>2 Days</td>
+<td>الإهانة المبالغ فيها</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>3 Days</td>
+<td>التويت</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>5 Days</td>
+<td>التلفيت</td>
+<td>
+🔴 الحالة: ليست تقديرية<br>
+في حال التكرار تتدبل العقوبة
+</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>القذف + سب الأهل</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>الهاك</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>استغلال ثغرة</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>تنمر أو إهانة شخص من ذوي الحاجة</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>تحرش + تشفير كلام جنسي</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+<tr>
+<td>Perm</td>
+<td>سرقة مركبة عسكرية</td>
+<td>🔴 الحالة: ليست تقديرية</td>
+</tr>
+
+</tbody>
+
+
+
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section section-center" id="rules">
+    <p class="section-tag reveal">Banned Managers </p>
+    <h2 class="section-title reveal reveal-d1">Built by a team<strong> you can trust</strong></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-d1">
+        <p class="testimonial-quote">" Assistant Banned Manager"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">O</div>
+          <div>
+         <div class="testimonial-name">ST | Oppressive</div>
+
+<div class="testimonial-role">
+    <a href="https://discord.gg/uj"
+       class="profile-link"
+       target="_blank">
+        🔗 Discord Server
+    </a>
+</div>
+          </div>
+        </div>
+      </div>
+
+     <div class="testimonial-card reveal reveal-d2">
+    <p class="testimonial-quote">"Server Owner "</p>
+
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">Z</div>
+
+        <div>
+            <div class="testimonial-name">𝐒 𝐔 𝐋 𝐓 𝐀 𝐍</div>
+
+            <div class="testimonial-role">
+                <a href="https://discord.gg/uj"
+                   class="profile-link"
+                   target="_blank">
+                    🔗 Discord Server
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <div class="testimonial-card reveal reveal-d3">
+    <p class="testimonial-quote">" Banned Manager"</p>
+
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">Z</div>
+
+        <div>
+            <div class="testimonial-name">ST | vZDX</div>
+
+            <div class="testimonial-role">
+                <a href="https://discord.gg/uj"
+                   class="profile-link"
+                   target="_blank">
+                    🔗 Discord Server
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+</div>
+
+
+  </section>
+
+ 
+  <!-- ═══ الأسئلة الشائعه ═══ -->
+  <section class="section section-center" id="faq">
+    <p class="section-tag reveal"> Archive </p>
+    <h2 class="section-title reveal reveal-d1">Questions we hear <strong>most often</strong></h2>
+
+    <div class="faq-list reveal reveal-d2">
+      <div class="faq-controls">
+        <button class="faq-toggle-all" id="faqToggleAll">Expand All</button>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"> ايش هي الباندات التقديريه ؟ <span class="faq-icon"></span></button>
+        <div  class="faq-answer"><div class="faq-answer-inner"> 
+          <p>هي الباندات المسموح لك تقدير مدتها على حسب المشكله او الشكوى</p>
+          <a  href="https://discord.gg/uj">Scary Town</a> </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">هل أقدر افك باند عن خويي ؟<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">صحيح في حاله واحده و هي بعد اثبات عدم تورطه في أي عمل تخريبي و التأكد من بانده و تقديمه</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"> هل اقدر استلم شكوى انا منها؟ <span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">ممنوع و يجب طلب من اداري اخر استلامها</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"> هل الباندات ممكن تتعدل في اي وقت ؟ <span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">صحيح بشكل متكرر و قابله للتعديل في اي وقت </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"> هل مسموح اتدخل في مشكلة اداري ثاني ؟ <span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"> ممنوع التدخل في مشكلة اداري ثاني دون ان يطلب منك التدخل </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER SPY ═══ -->
+  <section class="footer-cta" id="cta">
+    <p class="section-tag reveal">INFO</p>
+    <h2 class="section-title reveal reveal-d1">Bulid Your Website<br><strong>starts here</strong></h2>
+    <div class="footer-ctas reveal reveal-d3">
+      <a href="https://zkxb5.github.io/Spy-Master/" class="btn-primary">Spy Master</a>
+      <a href="https://discord.gg/kqn8HxNTH" class="btn-secondary">Contact</a>
+    </div>
+
+    <div class="footer-bar reveal reveal-d4" style="margin-top: 80px;">
+      <div class="footer-brand">Scary Town | By Al-Shiekh</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Status</a>
+        <span class="footer-credit">Instagram: <a href="https://www.instagram.com/zkxb5?igsh=bDY1MmFnOHJnMG96" target="_blank" rel="nofollow">Zkxb5</a></span>
+        <span class="footer-credit">Discord: <a href="https://discord.gg/mcjus5PKmP" target="_blank" rel="nofollow">Zkxb5</a></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<script src="spy-script.js"></script>
+</body>
+</html>
