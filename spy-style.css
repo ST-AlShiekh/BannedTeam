@@ -1576,33 +1576,35 @@ font-size:18px;
     background:#222;
 }
 
-/* --- Admin Circular / Announcement Styles --- */
+/* --- Admin Announcement --- */
 .admin-circular-wrapper {
+  width: 100%;
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 30px auto;
+  padding: 0 15px;
+  box-sizing: border-box;
   direction: rtl;
+  text-align: right;
   font-family: 'Montserrat', sans-serif;
 }
 
 .circular-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(20, 20, 30, 0.85) 0%, rgba(10, 10, 15, 0.95) 100%);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 22, 0.92);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   backdrop-filter: blur(10px);
 }
 
-/* خلفية مضيئة متوهجة خفيفة */
 .circular-glow {
   position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
+  top: -40px;
+  right: -40px;
+  width: 150px;
+  height: 150px;
   background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
   z-index: 0;
   pointer-events: none;
@@ -1613,97 +1615,77 @@ font-size:18px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
   position: relative;
   z-index: 1;
 }
 
 .circular-badge-wrapper {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.4);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
 }
 
 .circular-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background-color: #ef4444;
   border-radius: 50%;
-  box-shadow: 0 0 8px #ef4444;
+  box-shadow: 0 0 6px #ef4444;
   animation: pulse-dot 1.5s infinite;
 }
 
 .circular-tag-text {
   color: #fca5a5;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.5px;
 }
 
 .circular-target {
   color: #94a3b8;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
 }
 
 .circular-body {
-  display: flex;
-  gap: 20px;
+  display: block; /* تم التعديل لتجنب التداخل النصي */
   position: relative;
   z-index: 1;
 }
 
-.circular-icon-box {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  width: 55px;
-  height: 55px;
-  min-width: 55px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circular-content {
-  flex: 1;
-}
-
 .circular-title {
   color: #ffffff;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   margin-bottom: 10px;
+  line-height: 1.4;
 }
 
 .circular-desc {
   color: #cbd5e1;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .circular-list {
   list-style: none;
   padding: 0;
   margin: 0 0 15px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .circular-list li {
   color: #e2e8f0;
-  font-size: 13.5px;
+  font-size: 13px;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1716,11 +1698,11 @@ font-size:18px;
 
 .circular-alert-box {
   background: rgba(239, 68, 68, 0.08);
-  border-right: 4px solid #ef4444;
-  padding: 12px 15px;
-  border-radius: 0 8px 8px 0;
+  border-right: 3px solid #ef4444;
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
   color: #fca5a5;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
@@ -1728,10 +1710,10 @@ font-size:18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 25px;
-  padding-top: 15px;
+  margin-top: 20px;
+  padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 13px;
+  font-size: 12.5px;
   position: relative;
   z-index: 1;
 }
@@ -1751,15 +1733,10 @@ font-size:18px;
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .circular-body {
-    flex-direction: column;
-    gap: 15px;
-  }
   .circular-footer {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     align-items: flex-start;
   }
 }
