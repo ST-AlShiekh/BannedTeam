@@ -301,3 +301,10 @@ searchInput.value="";
 runSearch("");
 
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+  const circularElement = document.getElementById('adminCircular');
+  if (circularElement) {
+    circularElement.scrollIntoView({ behavior: 'smooth' });
+  }
+});
