@@ -12,32 +12,48 @@
 <body>
   
 <!-- Announcement Bar -->
-<div class="announcement-bar" id="announcementBar">
-  <div class="announcement-content">
-    <span class="announcement-badge">تنبيه هام</span>
-    <p id="announcementText">📢 تعميم إداري | فريق الباندات
+<section class="admin-circular-wrapper reveal" id="adminCircular">
+  <div class="circular-card">
+    <div class="circular-glow"></div>
+    
+    <div class="circular-header">
+      <div class="circular-badge-wrapper">
+        <span class="circular-dot"></span>
+        <span class="circular-tag-text">تعميم إداري رسمي</span>
+      </div>
+      <div class="circular-target">فريق الباندات (Banned Team)</div>
+    </div>
 
-نحيط جميع أعضاء الباند تيم علمًا بأنه يُمنع منعًا باتًا تنفيذ أي باند على أي لاعب بدون وجود تصوير كامل وواضح للحالة.
+    <div class="circular-body">
+      <div class="circular-icon-box">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+      </div>
+      <div class="circular-content">
+        <h3 class="circular-title">تنبيه هام جداً بخصوص تنفيذ العقوبات وباندات اللاعبين</h3>
+        <p class="circular-desc">
+          نحيط جميع أعضاء الباند تيم علمًا بأنه <strong>يُمنع منعًا باتًا</strong> تنفيذ أي باند على أي لاعب بدون وجود تصوير كامل وواضح للحالة.
+        </p>
+        
+        <ul class="circular-list">
+          <li><span>✓</span> تصوير سبب الباند بشكل كامل.</li>
+          <li><span>✓</span> إظهار المخالفة وتوثيقها بوضوح تام.</li>
+          <li><span>✓</span> توفر الدليل الكافي قبل اتخاذ أي إجراء إداري.</li>
+        </ul>
 
-ويشمل ذلك:
+        <div class="circular-alert-box">
+          ⚠️ <strong>تنبيه إداري:</strong> أي باند يتم تنفيذه بدون دليل أو تصوير يُعتبر <strong>مخالفة إدارية صريحة</strong> وقد يعرض المسؤول للمحاسبة أو سحب الصلاحيات فوراً.
+        </div>
+      </div>
+    </div>
 
-تصوير سبب الباند كامل.
-إظهار المخالفة بشكل واضح.
-وجود دليل كافي قبل اتخاذ الإجراء.
-
-أي باند بدون دليل أو تصوير يُعتبر مخالفة إدارية وقد يعرض المسؤول للمحاسبة أو سحب الصلاحيات.
-
-الهدف من هذا القرار هو حفظ حقوق الجميع وضمان العدل داخل السيرفر.
-نرجو الالتزام التام من جميع أعضاء الباند تيم. ✅</p>
+    <div class="circular-footer">
+      <span class="circular-goal">🎯 الهدف من القرار: حفظ حقوق الجميع وضمان العدل التام داخل السيرفر.</span>
+      <span class="circular-sign">إدارة Scary Town</span>
+    </div>
   </div>
-  <button class="announcement-close" id="closeAnnouncement" aria-label="إغلاق الإعلان">✕</button>
-</div>
-  
-<svg class="grain" width="100%" height="100%">
-  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
-  <rect width="100%" height="100%" filter="url(#n)"/>
-</svg>
-<div class="atmosphere"></div>
+</section>
 
 <!-- Nav -->
 <nav class="top-nav" id="topNav">
