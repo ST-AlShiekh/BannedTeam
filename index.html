@@ -7,11 +7,74 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="spy-style.css">
-
 </head>
 <body>
-  
-<!-- Announcement Bar -->
+
+<svg class="grain" width="100%" height="100%">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#n)"/>
+</svg>
+<div class="atmosphere"></div>
+
+<!-- Nav -->
+<nav class="top-nav" id="topNav">
+  <a href="#" class="nav-brand">SCARY TOWN<span>Systm</span></a>
+  <ul class="nav-links">
+    <li><a href="#staff"> جدول الباندات </a></li>
+    <li><a href="#rules">  مسؤولين المسؤولية </a></li>
+   <li><a href="#faq">الأرشيف</a></li>
+  </ul>
+  <a href="#staff" class="nav-cta">الجدول الرئيسي</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span class="toggle-bar"></span><span class="toggle-bar"></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-links">
+      <a href="#" class="mobile-menu-link" data-index="01">الرئيسية</a>
+      <a href="#staff" class="mobile-menu-link" data-index="02"> جدول الباندات</a>
+      <a href="#rules" class="mobile-menu-link" data-index="05">مسؤولين الباند </a>
+      <a href="#faq" class="mobile-menu-link" data-index="06">الأرشيف</a>
+    </div>
+    <div class="mobile-menu-footer">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- Side Panels -->
+<nav class="side-panel left" aria-label="Scroll indicators">
+  <span class="side-label">Scroll</span>
+  <div class="side-track"><div class="side-track-fill" id="leftTrack"></div></div>
+  <div class="side-dot active"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-readout" id="scrollPct">00</div>
+</nav>
+
+<nav class="side-panel right" aria-label="Status indicators">
+  <span class="side-label">Status</span>
+  <div class="side-track"><div class="side-track-fill" id="rightTrack"></div></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot active"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-dot"></div>
+  <div class="side-readout">LMN</div>
+</nav>
+
+<main class="main">
+
+<!-- Announcement / Circular Bar -->
 <section class="admin-circular-wrapper reveal" id="adminCircular">
   <div class="circular-card">
     <div class="circular-glow"></div>
@@ -55,69 +118,6 @@
   </div>
 </section>
 
-<!-- Nav -->
-<nav class="top-nav" id="topNav">
-  <a href="#" class="nav-brand">SCARY TOWN<span>Systm</span></a>
-</a>
-  <ul class="nav-links">
-    <li><a href="#staff"> جدول الباندات </a></li>
-    <li><a href="#rules">  مسؤولين المسؤولية </a></li>
-   <li><a href="#faq">الأرشيف</a></li>
-
-
-  </ul>
-  <a href="#staff" class="nav-cta">الجدول الرئيسي</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-    <span class="toggle-bar"></span><span class="toggle-bar"></span>
-  </button>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-links">
-      <a href="#" class="mobile-menu-link" data-index="01">الرئيسية</a>
-      <a href="#staff" class="mobile-menu-link" data-index="02"> جدول الباندات</a>
-      <a href="#rules" class="mobile-menu-link" data-index="05">مسؤولين الباند </a>
-            <a href="#faq" class="mobile-menu-link" data-index="06">الأرشيف</a>
-
-
-    </div>
-    <div class="mobile-menu-footer">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
-</div>
-
-<!-- Side Panels -->
-<nav class="side-panel left" aria-label="Scroll indicators">
-  <span class="side-label">Scroll</span>
-  <div class="side-track"><div class="side-track-fill" id="leftTrack"></div></div>
-  <div class="side-dot active"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-readout" id="scrollPct">00</div>
-</nav>
-
-<nav class="side-panel right" aria-label="Status indicators">
-  <span class="side-label">Status</span>
-  <div class="side-track"><div class="side-track-fill" id="rightTrack"></div></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot active"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-dot"></div>
-  <div class="side-readout">LMN</div>
-</nav>
-
-<main class="main">
-
 <!--  قسم Hero -->
 <section class="hero" id="hero">
     <div class="hero-grid"></div>
@@ -128,7 +128,7 @@
     <h1> <em>Scary Town</em><br></h1>
     <p class="hero-sub"><strong><b>
 نظام الإدارة المركزي لسيرفر Scary Town، يوفّر للإداريين منصة موحدة للوصول إلى جدول الباندات، العقوبات، المخالفات، والإجراءات التنظيمية، بهدف تعزيز الكفاءة والالتزام داخل المسؤولية بشكل افضل .
-    </strong></b></p>
+    </b></strong></p>
   
 
 
@@ -495,7 +495,7 @@
 </td>
 </tr>
 
-          
+         
 <tr>
 <td>Perm</td>
 <td>القذف + سب الأهل</td>
