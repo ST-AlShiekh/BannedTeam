@@ -1575,3 +1575,66 @@ font-size:18px;
 .search-suggestions div:hover{
     background:#222;
 }
+
+/* Announcement Bar Styles */
+.announcement-bar {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.15), rgba(59, 130, 246, 0.15));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1001;
+  font-family: 'Montserrat', sans-serif;
+  direction: rtl;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.announcement-badge {
+  background: #ef4444;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  animation: pulse-badge 2s infinite;
+}
+
+.announcement-bar p {
+  margin: 0;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.announcement-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s;
+  padding: 4px 8px;
+}
+
+.announcement-close:hover {
+  color: #fff;
+}
+
+@keyframes pulse-badge {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
