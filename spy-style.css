@@ -1767,11 +1767,16 @@ font-size:18px;
 }
 
 .discord-link {
-  color: #00aff4; /* لون الرابط */
+  color: #00aff4;
   text-decoration: none;
+  display: inline-flex;
+  unicode-bidi: isolate;
+}
+
+.channel-name {
+  direction: ltr;
+  unicode-bidi: bidi-override;
   display: inline-block;
-  direction: ltr; /* لون الانعكاس */
-  unicode-bidi: embed;
 }
 
 .discord-link:hover {
