@@ -1769,14 +1769,10 @@ font-size:18px;
 .discord-link {
   color: #00aff4;
   text-decoration: none;
-  display: inline-flex;
-  unicode-bidi: isolate;
-}
-
-.channel-name {
-  direction: ltr;
-  unicode-bidi: bidi-override;
   display: inline-block;
+  direction: ltr;
+  unicode-bidi: isolate;
+  unicode-bidi: plaintext;
 }
 
 .discord-link:hover {
