@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050206">
+<title>Ban Schedule | Scary Town</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bg.css">
+<link rel="stylesheet" href="spy-style.css">
+</head>
+<body>
+
+<svg class="grain" width="100%" height="100%" aria-hidden="true">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#n)"/>
+</svg>
+
+<!-- Nav -->
+<nav class="top-nav" id="topNav">
+  <a href="#" class="nav-brand">Scary Town<span>Bans System</span></a>
+  <ul class="nav-links">
+    <li><a href="#staff">جدول الباندات</a></li>
+    <li><a href="#rules">مسؤولين الباند</a></li>
+    <li><a href="#faq">الأرشيف</a></li>
+  </ul>
+  <a href="#staff" class="nav-cta">الجدول الرئيسي</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span class="toggle-bar"></span><span class="toggle-bar"></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-links">
+      <a href="#" class="mobile-menu-link" data-index="01">الرئيسية</a>
+      <a href="#staff" class="mobile-menu-link" data-index="02">جدول الباندات</a>
+      <a href="#rules" class="mobile-menu-link" data-index="03">مسؤولين الباند</a>
+      <a href="#faq" class="mobile-menu-link" data-index="04">الأرشيف</a>
+    </div>
+    <div class="mobile-menu-footer">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- نافذة التعاميم -->
+<div class="circ-modal" id="circModal" role="dialog" aria-modal="true" aria-labelledby="circTitle" aria-hidden="true">
+  <div class="circ-backdrop" data-close></div>
+  <div class="circ-panel">
+    <header class="circ-head">
+      <div>
+        <h3 id="circTitle">التعاميم الإدارية</h3>
+        <p>جميع التعاميم الرسمية الصادرة من إدارة Scary Town</p>
+      </div>
+      <button class="circ-close" type="button" data-close aria-label="إغلاق">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="circ-list" id="circList">
+
+      <!-- ═══ لإضافة تعميم جديد: انسخ كامل <article> وحطه تحت أو فوق هذا، وعدّل النصوص ═══ -->
+      <article class="circ-item">
+        <div class="circ-item-top">
+          <span class="circ-num en">01</span>
+          <span class="circ-tag">تعميم إداري رسمي</span>
+          <span class="circ-target">فريق الباندات (Banned Team)</span>
+        </div>
+        <h4 class="circ-item-title">تنبيه هام جداً بخصوص تنفيذ العقوبات</h4>
+        <p class="circ-item-desc">عموم الباندات تتطلب استدعاء ومقطع فيديو لا يقل عن دقيقة ويجب ان يكون ايديات جميع الاطراف واضحة</p>
+        <div class="circ-item-foot">
+          <span class="circ-goal">الهدف من القرار: حفظ حقوق الجميع وضمان العدل التام داخل السيرفر.</span>
+          <span class="circ-sign">إدارة Scary Town</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- Side Panels -->
+<nav class="side-panel left" aria-label="Scroll indicators">
+  <span class="side-label">Scroll</span>
+  <div class="side-track"><div class="side-track-fill" id="leftTrack"></div></div>
+  <div class="side-dot active"></div><div class="side-dot"></div><div class="side-dot"></div>
+  <div class="side-dot"></div><div class="side-dot"></div><div class="side-dot"></div>
+  <div class="side-readout" id="scrollPct">00</div>
+</nav>
+<nav class="side-panel right" aria-label="Status indicators">
+  <span class="side-label">Status</span>
+  <div class="side-track"><div class="side-track-fill" id="rightTrack"></div></div>
+  <div class="side-dot"></div><div class="side-dot"></div><div class="side-dot active"></div>
+  <div class="side-dot"></div><div class="side-dot"></div><div class="side-dot"></div>
+  <div class="side-readout">LMN</div>
+</nav>
+
+<main class="main">
+
+<!-- زر التعاميم الإدارية -->
+<section class="admin-circular-wrapper reveal" id="adminCircular">
+  <button class="circ-trigger" id="circOpen" type="button" aria-haspopup="dialog" aria-controls="circModal">
+    <span class="circ-trigger-icon">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+      <i class="circ-ping"></i>
+    </span>
+    <span class="circ-trigger-text">
+      <b>التعاميم الإدارية</b>
+      <small>اضغط لعرض التعاميم الرسمية</small>
+    </span>
+    <span class="circ-count" id="circCount">1</span>
+    <svg class="circ-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+</section>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span>نظام الإدارة العام</span>
+  </div>
+  <h1 data-text="Scary Town"><em>Scary Town</em></h1>
+  <p class="hero-sub">نظام الإدارة المركزي لسيرفر Scary Town، يوفّر للإداريين منصة موحدة للوصول إلى جدول الباندات، العقوبات، المخالفات، والإجراءات التنظيمية، بهدف تعزيز الكفاءة والالتزام داخل المسؤولية بشكل افضل.</p>
+  <div class="hero-ctas">
+    <a href="TXtext.html" class="btn-primary">قوانين الـTX</a>
+    <a href="#rules" class="btn-secondary">مسؤولين الباند</a>
+  </div>
+  <div class="hero-metrics">
+    <div class="metric">
+      <div class="metric-value"><span class="counter" data-target="98" data-decimals="0">0</span><span>%</span></div>
+      <div class="metric-label">نسبة حل مشكلتك !</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value"><span class="counter" data-target="420" data-decimals="0">0</span><span>+</span></div>
+      <div class="metric-label">إداري متفاعل</div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="logo-ticker">
+  <div class="logo-ticker-label">Scary Town</div>
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item">اداره متفاعله</span><span class="ticker-dot"></span>
+    <span class="ticker-item">مسؤوليات ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">قوانين ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تحكم كامل</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تركيز عالي</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تنظيم اداري</span><span class="ticker-dot"></span>
+    <span class="ticker-item">انظمة ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">سستم متكامل</span><span class="ticker-dot"></span>
+    <!-- Duplicated for seamless loop -->
+    <span class="ticker-item">اداره متفاعله</span><span class="ticker-dot"></span>
+    <span class="ticker-item">مسؤوليات ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">قوانين ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تحكم كامل</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تركيز عالي</span><span class="ticker-dot"></span>
+    <span class="ticker-item">تنظيم اداري</span><span class="ticker-dot"></span>
+    <span class="ticker-item">انظمة ادارية</span><span class="ticker-dot"></span>
+    <span class="ticker-item">سستم متكامل</span><span class="ticker-dot"></span>
+  </div>
+</div>
+
+<!-- جدول الباندات -->
+<section class="section section-center" id="staff">
+  <p class="section-tag en reveal">Banned System</p>
+  <h2 class="section-title reveal">جدول الباندات <strong>الخاص بالباند تيم</strong></h2>
+
+  <div class="rank-section reveal">
+    <div class="rank-head">
+      <div>
+        <h3 class="rank-title">جدول العقوبات</h3>
+        <p class="rank-sub">ابحث بالمخالفة أو المدة، أو صفّي حسب نوع العقوبة</p>
+      </div>
+      <div class="rank-stats">
+        <div class="stat"><b id="statTotal">42</b><span>إجمالي المخالفات</span></div>
+        <div class="stat"><b>2 HOURS</b><span>أخف عقوبة</span></div>
+        <div class="stat"><b>PERMANENT</b><span>أشد عقوبة</span></div>
+      </div>
+    </div>
+
+    <div class="sev-ruler" aria-hidden="true">
+      <div class="sev-bar"></div>
+      <div class="sev-labels"><span>2H</span><span>6H</span><span>8H</span><span>10H</span><span>12H</span><span>1D</span><span>2D</span><span>3D</span><span>4D</span><span>1W</span><span>PERM</span></div>
+    </div>
+
+    <div class="rank-tools">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3m1.8-5.2a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="smartSearch" placeholder="ابحث عن مخالفة أو مدة أو ملاحظة..." autocomplete="off" aria-label="بحث في جدول العقوبات">
+        <span class="kbd">/</span>
+        <button id="clearSearch" type="button" aria-label="مسح البحث">✕</button>
+      </div>
+      <div class="chips">
+        <button class="chip active" type="button" data-filter="all">الكل</button>
+        <button class="chip" type="button" data-filter="h">ساعات</button>
+        <button class="chip" type="button" data-filter="d">أيام</button>
+        <button class="chip" type="button" data-filter="p">دائم</button>
+        <div id="searchInfo"></div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="rank-table">
+        <thead>
+          <tr>
+            <th>العقوبة</th>
+            <th>المخالفة</th>
+            <th>الملاحظة</th>
+            <th>معلومات أخرى</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr class="group-row s1" data-group="g0" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">2 HOURS</span><span class="grp-count" data-n="1">1</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s1" data-group="g0" data-tier="h" data-search="2 HOURS تعبئة البيانات بوجود مسعف لازم المسعف يكون موجود فعلاً وقت التعبئة، شوف المقطع قبل لا تنفذ ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">2 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تعبئة البيانات بوجود مسعف</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لازم المسعف يكون موجود فعلاً وقت التعبئة، شوف المقطع قبل لا تنفذ</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s1" data-group="g1" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">3 HOURS</span><span class="grp-count" data-n="1">1</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s1" data-group="g1" data-tier="h" data-search="3 HOURS استخراج السلاح او التلويح به في منطقة آمنة السحب أو التلويح وحده يكفي، ما يحتاج طلقة. بس تأكد انه داخل حدود المنطقة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">3 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">استخراج السلاح او التلويح به في منطقة آمنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">السحب أو التلويح وحده يكفي، ما يحتاج طلقة. بس تأكد انه داخل حدود المنطقة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s2" data-group="g2" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">6 HOURS</span><span class="grp-count" data-n="6">6</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS أيموت في فايت شوف المقطع من بداية الفايت، والحكم على تصرفه قبل الموت مو بعده ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">أيموت في فايت</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">شوف المقطع من بداية الفايت، والحكم على تصرفه قبل الموت مو بعده</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS عدم حمل تصوير عذر نسيت أشغله ما ينقبل، التصوير لازم من بداية الموقف ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">عدم حمل تصوير</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">عذر نسيت أشغله ما ينقبل، التصوير لازم من بداية الموقف</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS كلبشه داخل المناطق الأمنه لازم المقطع يبين انه داخل المنطقة فعلاً مو على طرفها ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">كلبشه داخل المناطق الأمنه</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لازم المقطع يبين انه داخل المنطقة فعلاً مو على طرفها</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS معالجة شخص و اخذه رهينه يبين بالمقطع الترتيب: عالجه وبعدها اخذه رهينة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">معالجة شخص و اخذه رهينه</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">يبين بالمقطع الترتيب: عالجه وبعدها اخذه رهينة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS إطلاق نار أثناء القيادة ما يفرق نوع السلاح ولا اذا أصاب أحد، المهم انه كان يسوق وقت الطلق ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">إطلاق نار أثناء القيادة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">ما يفرق نوع السلاح ولا اذا أصاب أحد، المهم انه كان يسوق وقت الطلق</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s2" data-group="g2" data-tier="h" data-search="6 HOURS ضرب في منطقة امنة نبي المقطع يبين الضربة والمكان، والايديات واضحة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">6 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">ضرب في منطقة امنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">نبي المقطع يبين الضربة والمكان، والايديات واضحة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s3" data-group="g3" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">8 HOURS</span><span class="grp-count" data-n="4">4</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s3" data-group="g3" data-tier="h" data-search="8 HOURS تدخل في حالة قبل الباند شوف اذا واحد من أطراف الحالة طلب منه يتدخل ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">8 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تدخل في حالة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">قبل الباند شوف اذا واحد من أطراف الحالة طلب منه يتدخل</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s3" data-group="g3" data-tier="h" data-search="8 HOURS إهانة جثة الفعل لازم يكون بعد ما صارت جثة، مو وقت الفايت ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">8 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">إهانة جثة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">الفعل لازم يكون بعد ما صارت جثة، مو وقت الفايت</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s3" data-group="g3" data-tier="h" data-search="8 HOURS رجوع الحالة بعد الإسقاط قارن وقت الإسقاط بوقت رجوعه من اللوق أو المقطع ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">8 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">رجوع الحالة بعد الإسقاط</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">قارن وقت الإسقاط بوقت رجوعه من اللوق أو المقطع</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s3" data-group="g3" data-tier="h" data-search="8 HOURS التذكر بعد اسقاط اذا ذكر تفاصيل قبل الإسقاط يعتبر مخالفة، ونطلب المقطع اللي يثبت ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">8 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التذكر بعد اسقاط</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">اذا ذكر تفاصيل قبل الإسقاط يعتبر مخالفة، ونطلب المقطع اللي يثبت</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s4" data-group="g4" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">10 HOURS</span><span class="grp-count" data-n="3">3</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s4" data-group="g4" data-tier="h" data-search="10 HOURS عدم تقدير الحياة شوف اذا كان تحت تهديد حقيقي ولا لا، اذا لا يتطبق عليه ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">10 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">عدم تقدير الحياة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">شوف اذا كان تحت تهديد حقيقي ولا لا، اذا لا يتطبق عليه</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s4" data-group="g4" data-tier="h" data-search="10 HOURS إطلاق نار في منطقة آمنة طلقة وحدة تكفي، ما يشترط يصيب أحد ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">10 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">إطلاق نار في منطقة آمنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">طلقة وحدة تكفي، ما يشترط يصيب أحد</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s4" data-group="g4" data-tier="h" data-search="10 HOURS سرقة بدون تخطيط بداعي الفايت لازم يبين انه ما كان فيه تخطيط، السرقة جت بس عشان يفتح فايت ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">10 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">سرقة بدون تخطيط بداعي الفايت</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لازم يبين انه ما كان فيه تخطيط، السرقة جت بس عشان يفتح فايت</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s5" data-group="g5" data-tier="h"><td colspan="4"><div class="grp"><span class="grp-badge en">12 HOURS</span><span class="grp-count" data-n="10">10</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS مقاومة عدد اكبر العدد لازم يكون واضح بالمقطع قبل ما يبدأ الفايت ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">مقاومة عدد اكبر</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">العدد لازم يكون واضح بالمقطع قبل ما يبدأ الفايت</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS تهديد في منطقة امنة لفظي أو بالسلاح، المهم انه حصل داخل المنطقة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تهديد في منطقة امنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لفظي أو بالسلاح، المهم انه حصل داخل المنطقة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS تدخل في سيناريو غير عن التدخل في حالة، تأكد انه سيناريو شغال وما كان من أطرافه ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تدخل في سيناريو</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">غير عن التدخل في حالة، تأكد انه سيناريو شغال وما كان من أطرافه</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS عدم حضور استدعاء تأكد انه انرسل له الاستدعاء وخلصت مهلته قبل التنفيذ ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">عدم حضور استدعاء</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">تأكد انه انرسل له الاستدعاء وخلصت مهلته قبل التنفيذ</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS الخلط بين الشخصيات او احداث مختلفة وضح بالمقطع المعلومة اللي نقلها من شخصية لثانية ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">الخلط بين الشخصيات او احداث مختلفة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">وضح بالمقطع المعلومة اللي نقلها من شخصية لثانية</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS التحلل في وسط سيناريو + تصفير التصفير بعد ما تثبت المخالفة، وتذكر السبب في الإعلان ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التحلل في وسط سيناريو + تصفير</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">التصفير بعد ما تثبت المخالفة، وتذكر السبب في الإعلان</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS تحرير رهينه بدون سبب ( مجرمين او عسكر ) ينطبق على الجهتين، والمهم انه ما كان في سبب رول بلاي ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تحرير رهينه بدون سبب ( مجرمين او عسكر )</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">ينطبق على الجهتين، والمهم انه ما كان في سبب رول بلاي</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS سرقة مركبة عسكرية تأكد انها عسكرية فعلاً مو مدنية بنفس الشكل ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">سرقة مركبة عسكرية</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">تأكد انها عسكرية فعلاً مو مدنية بنفس الشكل</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS خطف في منطقة امنة المقطع لازم يبين الخطف وموقعه ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">خطف في منطقة امنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">المقطع لازم يبين الخطف وموقعه</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s5" data-group="g5" data-tier="h" data-search="12 HOURS محاولة افتعال فايت أو فايت بدون سبب المحاولة تكفي حتى لو ما صار فايت، المقطع يبين الاستفزاز ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">12 HOURS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">محاولة افتعال فايت أو فايت بدون سبب</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">المحاولة تكفي حتى لو ما صار فايت، المقطع يبين الاستفزاز</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s6" data-group="g6" data-tier="d"><td colspan="4"><div class="grp"><span class="grp-badge en">1 DAY</span><span class="grp-count" data-n="3">3</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s6" data-group="g6" data-tier="d" data-search="1 DAY Meta Gaming ( التواصل الغير شرعي ) نحتاج صورة أو مقطع يثبت المعلومة اللي وصلته من برا الرول ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">1 DAY</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">Meta Gaming ( التواصل الغير شرعي )</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">نحتاج صورة أو مقطع يثبت المعلومة اللي وصلته من برا الرول</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s6" data-group="g6" data-tier="d" data-search="1 DAY قتل في منطقة امنة الموقع هو الأساس، والمقطع يبين لحظة القتل ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">1 DAY</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">قتل في منطقة امنة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">الموقع هو الأساس، والمقطع يبين لحظة القتل</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s6" data-group="g6" data-tier="d" data-search="1 DAY أسلوب سيئ يعتمد على شدة الأسلوب وسياقه، والأفضل تحط لقطة من المحادثة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">1 DAY</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">أسلوب سيئ</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">يعتمد على شدة الأسلوب وسياقه، والأفضل تحط لقطة من المحادثة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s7" data-group="g7" data-tier="d"><td colspan="4"><div class="grp"><span class="grp-badge en">2 DAYS</span><span class="grp-count" data-n="4">4</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s7" data-group="g7" data-tier="d" data-search="2 DAYS الخروج من الرول شوف السياق قبل الباند، هل هو متعمد ولا مشكلة تقنية ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">2 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">الخروج من الرول</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">شوف السياق قبل الباند، هل هو متعمد ولا مشكلة تقنية</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s7" data-group="g7" data-tier="d" data-search="2 DAYS VDM ( التصادم العشوائي ) لازم يكون التصادم بدون سبب رول بلاي، شوف السرعة والمقطع ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">2 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">VDM ( التصادم العشوائي )</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لازم يكون التصادم بدون سبب رول بلاي، شوف السرعة والمقطع</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s7" data-group="g7" data-tier="d" data-search="2 DAYS RDM ( قتل بدون تهديد ) اسأل نفسك: صار تهديد قبل القتل؟ اذا لا، يتطبق ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">2 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">RDM ( قتل بدون تهديد )</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">اسأل نفسك: صار تهديد قبل القتل؟ اذا لا، يتطبق</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s7" data-group="g7" data-tier="d" data-search="2 DAYS التلويت المره الأولى + تصفير تأكد انها فعلاً الأولى بسجله قبل لا تنفذ ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">2 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التلويت المره الأولى + تصفير</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">تأكد انها فعلاً الأولى بسجله قبل لا تنفذ</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s8" data-group="g8" data-tier="d"><td colspan="4"><div class="grp"><span class="grp-badge en">3 DAYS</span><span class="grp-count" data-n="1">1</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s8" data-group="g8" data-tier="d" data-search="3 DAYS عدم احترام إداري ارفق لقطة المحادثة أو التذكرة اللي صار فيها الموقف ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">3 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">عدم احترام إداري</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">ارفق لقطة المحادثة أو التذكرة اللي صار فيها الموقف</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s9" data-group="g9" data-tier="d"><td colspan="4"><div class="grp"><span class="grp-badge en">4 DAYS</span><span class="grp-count" data-n="2">2</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s9" data-group="g9" data-tier="d" data-search="4 DAYS التلفيت يجب وجود مقطع دقيقة كاملة مع معلومات الشخص وهو ملفت وصورة من اللوقات في حال كان الشخص ملفت عند اي قطاع عسكري مهما كان القطاع يتم تصفير حقيبة وذكر مع السبب + تصفير حقيبة خلاف ذلك باند فقط">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">4 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التلفيت</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-note t">يجب وجود مقطع دقيقة كاملة مع معلومات الشخص وهو ملفت وصورة من اللوقات</span></td>
+<td class="c-info" data-label="معلومات أخرى"><span class="tag tag-info t">في حال كان الشخص ملفت عند اي قطاع عسكري مهما كان القطاع يتم تصفير حقيبة وذكر مع السبب + تصفير حقيبة خلاف ذلك باند فقط</span></td>
+</tr>
+<tr class="v-row s9" data-group="g9" data-tier="d" data-search="4 DAYS التلويت المره الثانيه + تصفير ارجع لسجل باندات الشخص وتأكد انه عنده تلويت قبلها ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">4 DAYS</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التلويت المره الثانيه + تصفير</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">ارجع لسجل باندات الشخص وتأكد انه عنده تلويت قبلها</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s10" data-group="g10" data-tier="d"><td colspan="4"><div class="grp"><span class="grp-badge en">1 WEEK</span><span class="grp-count" data-n="1">1</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s10" data-group="g10" data-tier="d" data-search="1 WEEK التلويت المره الثالثة + تصفير تأكد ان المرتين اللي قبلها مسجلات عنده ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">1 WEEK</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">التلويت المره الثالثة + تصفير</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">تأكد ان المرتين اللي قبلها مسجلات عنده</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="group-row s11" data-group="g11" data-tier="p"><td colspan="4"><div class="grp"><span class="grp-badge en">PERMANENT</span><span class="grp-count" data-n="6">6</span><span class="grp-line"></span></div></td></tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT السب لقطة واضحة من المحادثة أو مقطع صوتي، ويتطبق مباشرة ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">السب</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لقطة واضحة من المحادثة أو مقطع صوتي، ويتطبق مباشرة</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT سب الاهل نفس السب، بس لازم يبين انه موجه للأهل بالتحديد ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">سب الاهل</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">نفس السب، بس لازم يبين انه موجه للأهل بالتحديد</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT القذف لازم الاتهام يكون صريح، مع دليل ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">القذف</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">لازم الاتهام يكون صريح، مع دليل</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT هاك ما يتطبق على الشك، نبي دليل قوي من اللوقات أو المقطع ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">هاك</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">ما يتطبق على الشك، نبي دليل قوي من اللوقات أو المقطع</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT استغلال ثغرة اذكر الثغرة بالتفصيل في المخالفة عشان تنسد ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">استغلال ثغرة</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">اذكر الثغرة بالتفصيل في المخالفة عشان تنسد</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+<tr class="v-row s11" data-group="g11" data-tier="p" data-search="PERMANENT تحرش دليل كامل، ويتعامل معها بسرية ">
+<td class="c-dur" data-label="العقوبة"><span class="dur en">PERMANENT</span></td>
+<td class="c-vio" data-label="المخالفة"><span class="t">تحرش</span></td>
+<td class="c-note" data-label="الملاحظة"><span class="tag tag-plain t">دليل كامل، ويتعامل معها بسرية</span></td>
+<td class="c-info empty" data-label="معلومات أخرى"><span class="dash">—</span></td>
+</tr>
+        </tbody>
+      </table>
+      <div class="no-results" id="noResults">لا توجد نتائج مطابقة</div>
+    </div>
+  </div>
+</section>
+
+<!-- مسؤولين الباند -->
+<section class="section section-center" id="rules">
+  <p class="section-tag en reveal">Banned Managers</p>
+  <h2 class="section-title en reveal reveal-d1" style="letter-spacing:0;text-transform:none">Built With <strong>Trust &amp; Efficiency</strong></h2>
+
+  <div class="mgr-grid">
+
+    <!-- SOON (يمين) -->
+    <div class="mgr-card soon reveal reveal-d1">
+      <div class="mgr-role en">Deputy Banned Manager</div>
+      <div class="mgr-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+      </div>
+      <div class="mgr-name">SOON</div>
+      <div class="mgr-lock en">Profile Locked</div>
+    </div>
+
+    <!-- الشيخ (الوسط) -->
+    <div class="mgr-card lead reveal reveal-d2">
+      <div class="mgr-avatar">A</div>
+      <div class="mgr-name">Al-Shiekh</div>
+      <div class="mgr-rank en">Supervisor of Responsibilities</div>
+      <div>
+        <a href="https://discord.com/users/583738819371728918" class="profile-link" target="_blank" rel="noopener">Profile Link</a>
+      </div>
+    </div>
+
+    <!-- SOON (يسار) -->
+    <div class="mgr-card soon reveal reveal-d3">
+      <div class="mgr-role en">Deputy Banned Manager</div>
+      <div class="mgr-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+      </div>
+      <div class="mgr-name">SOON</div>
+      <div class="mgr-lock en">Profile Locked</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- الأسئلة الشائعة -->
+<section class="section section-center" id="faq">
+  <p class="section-tag en reveal">Archive</p>
+  <h2 class="section-title reveal reveal-d1">الأسئلة <strong>الأكثر تداولاً</strong></h2>
+
+  <div class="faq-list reveal reveal-d2">
+    <div class="faq-controls">
+      <button class="faq-toggle-all" id="faqToggleAll" type="button">Expand All</button>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" type="button">ايش هي الباندات التقديريه ؟ <span class="faq-icon"></span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>هي الباندات المسموح لك تقدير مدتها على حسب المشكله او الشكوى</p>
+        <a href="https://discord.gg/uj">Scary Town</a>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" type="button">هل اقدر افك باند شخص فقط عشان اشفقت عليه ؟ <span class="faq-icon"></span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">غير صحيح مسموح لك فقط فك البادنات الغير صحيحه</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" type="button">هل اقدر استلم شكوى انا منها ؟ <span class="faq-icon"></span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">ممنوع و يجب طلب من اداري اخر استلامها</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" type="button">هل الباندات ممكن تتعدل في اي وقت ؟ <span class="faq-icon"></span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">صحيح بشكل متكرر و قابله للتعديل في اي وقت</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" type="button">هل مسموح اتدخل في تكت اداري ثاني ؟ <span class="faq-icon"></span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">ممنوع التدخل في تكت اداري ثاني دون ان يطلب منك التدخل</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="footer-cta" id="cta">
+  <div class="footer-bar reveal reveal-d4">
+    <div class="footer-brand">Scary Town | By Al-Shiekh</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Status</a>
+      <span class="footer-credit">Discord: <a href="https://discord.gg/uj" target="_blank" rel="nofollow noopener">Scary Town RP</a></span>
+      <span class="footer-credit">Discord: <a href="https://discord.com/users/583738819371728918" target="_blank" rel="nofollow noopener">Zkxb5</a></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="bg.js"></script>
+<script src="spy-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060507">
+<title>قوانين وتعليمات نظام الـTX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bg.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #f4e9ea; --muted: #b39da1; --dim: #7d6a6f;
+    --red: #d6283f; --red-soft: #e29aa3; --gold: #c9a15a;
+    --line: rgba(255,255,255,.08); --line-red: rgba(214,40,63,.3);
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', 'Cairo', system-ui, sans-serif;
+    color: var(--text); background: #060507;
+    min-height: 100vh; line-height: 1.85;
+    padding: 56px 20px 60px;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(214,40,63,.45); color: #fff; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #07030a; }
+  ::-webkit-scrollbar-thumb { background: #2a0710; border-radius: 10px; border: 2px solid #07030a; }
+
+  .wrap { position: relative; z-index: 2; width: 100%; max-width: 980px; margin: 0 auto; }
+
+  /* حركة دخول خفيفة (CSS فقط) */
+  .rise { opacity: 0; transform: translateY(26px); animation: rise .9s var(--ease) forwards; }
+  .d1 { animation-delay: .08s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .28s; } .d4 { animation-delay: .38s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* ═══ الهيدر ═══ */
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 44px; }
+  .brand { font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; direction: ltr; display: flex; align-items: center; gap: 12px; }
+  .brand::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--red); animation: blink 2.4s ease-in-out infinite; }
+  .brand span { color: var(--red-soft); font-weight: 400; letter-spacing: .14em; }
+  @keyframes blink { 50% { opacity: .35; } }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 10px 22px; border-radius: 100px;
+    font-size: 13px; font-weight: 700; color: var(--text); text-decoration: none;
+    background: rgba(255,255,255,.04); border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    transition: all .45s var(--ease);
+  }
+  .back-btn svg { transition: transform .45s var(--ease); }
+  .back-btn:hover { border-color: var(--red); background: rgba(214,40,63,.16); transform: translateY(-2px); }
+  .back-btn:hover svg { transform: translateX(4px); }
+
+  .hero { text-align: center; margin-bottom: 52px; }
+  .tag {
+    display: inline-block; padding: 7px 20px; margin-bottom: 22px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; direction: ltr;
+    color: var(--red-soft); border: 1px solid var(--line-red); background: rgba(214,40,63,.08);
+  }
+  .hero h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); font-weight: 900; line-height: 1.3; color: #fff; }
+  .hero h1 b { font-weight: 900; background: linear-gradient(120deg, #fff 10%, var(--red-soft) 60%, var(--red)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { margin-top: 12px; color: var(--muted); font-size: .95rem; letter-spacing: .08em; direction: ltr; }
+
+  /* ═══ الأقسام ═══ */
+  .panel {
+    position: relative; margin-bottom: 26px; padding: 34px 36px; border-radius: 28px;
+    background: rgba(14, 9, 12, .86); border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    box-shadow: 0 24px 70px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .panel::before { content: ""; position: absolute; top: 0; right: 36px; left: 36px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--red), transparent); opacity: .7; }
+  .panel-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .icon-box { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: var(--gold); background: rgba(201,161,90,.08); border: 1px solid rgba(201,161,90,.3); }
+  .panel-head h2 { font-size: 1.35rem; font-weight: 800; color: #fff; line-height: 1.4; }
+  .panel-head small { display: block; font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--dim); text-transform: uppercase; direction: ltr; text-align: right; }
+
+  .greeting { color: #d6c6c9; font-size: .98rem; margin-bottom: 26px; }
+  .greeting strong { color: #fff; }
+
+  /* مراحل التحذير */
+  .stages { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .stage { padding: 24px 24px 20px; border-radius: 20px; background: rgba(255,255,255,.025); border: 1px solid var(--line); transition: border-color .4s, transform .5s var(--ease); }
+  .stage:hover { border-color: var(--line-red); transform: translateY(-3px); }
+  .stage-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .stage-num { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #fff; background: var(--red); }
+  .stage:nth-child(2) .stage-num { background: #a8265a; }
+  .stage-label { font-size: .98rem; font-weight: 700; color: #fff; line-height: 1.5; }
+  .stage-label em { display: inline-block; margin-inline-start: 6px; padding: 0 9px; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .1em; border-radius: 6px; color: var(--red-soft); background: rgba(214,40,63,.14); border: 1px solid var(--line-red); direction: ltr; }
+
+  .list { list-style: none; }
+  .list li { position: relative; padding: 10px 16px 10px 0; padding-inline-start: 22px; margin-bottom: 4px; font-size: .95rem; color: #d3c1c4; border-top: 1px dashed rgba(255,255,255,.07); }
+  .list li:first-child { border-top: 0; }
+  .list li::before { content: ""; position: absolute; top: 20px; inset-inline-start: 0; width: 7px; height: 7px; border-radius: 2px; transform: rotate(45deg); background: var(--red); }
+
+  .warning-line { margin-top: 24px; padding: 14px 20px; border-radius: 14px; font-weight: 700; font-size: .95rem; color: #f0a8b0; background: rgba(214,40,63,.08); border: 1px solid rgba(214,40,63,.25); border-inline-start: 3px solid var(--red); }
+
+  /* خط زمني للملاحظة */
+  .note { margin-top: 26px; padding: 24px 26px; border-radius: 20px; background: rgba(201,161,90,.05); border: 1px solid rgba(201,161,90,.25); border-inline-start: 3px solid var(--gold); }
+  .note-title { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; font-weight: 800; color: #ecd9b4; }
+  .note-title svg { color: var(--gold); }
+  .flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 18px; }
+  .flow-step { flex: 1; position: relative; padding: 14px 10px; text-align: center; border-radius: 14px; background: rgba(0,0,0,.28); border: 1px solid var(--line); }
+  .flow-step b { display: block; font-size: .95rem; color: #fff; }
+  .flow-step span { font-size: 11.5px; color: var(--muted); }
+  .flow-step.end { border-color: var(--line-red); background: rgba(214,40,63,.1); }
+  .flow-step.end b { color: var(--red-soft); }
+  .flow-arrow { flex: none; display: grid; place-items: center; width: 26px; color: var(--dim); }
+  .note p { font-size: .92rem; color: #dccdb2; }
+  .note p strong { color: #fff; }
+
+  /* قوانين الصلاحية */
+  .rules { display: grid; gap: 12px; counter-reset: r; margin-top: 8px; }
+  .rule { counter-increment: r; display: flex; gap: 18px; align-items: flex-start; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.025); border: 1px solid var(--line); transition: border-color .4s, background .4s; }
+  .rule:hover { border-color: var(--line-red); background: rgba(214,40,63,.05); }
+  .rule::before { content: "0" counter(r); flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 13px; font-weight: 800; color: var(--gold); background: rgba(201,161,90,.08); border: 1px solid rgba(201,161,90,.28); font-family: 'Montserrat', sans-serif; }
+  .rule p { font-size: .96rem; color: #d6c6c9; padding-top: 6px; }
+  .lead-in { margin-top: 24px; margin-bottom: 14px; font-weight: 700; color: #f0a8b0; }
+  .thanks { margin-top: 28px; padding: 18px; text-align: center; border-radius: 16px; font-weight: 700; color: #9ee0b8; background: rgba(74,222,128,.06); border: 1px solid rgba(74,222,128,.2); }
+
+  .footer { margin-top: 38px; padding-top: 22px; text-align: center; font-size: 12.5px; color: var(--dim); border-top: 1px solid var(--line); }
+  .footer b { color: var(--muted); }
+
+  @media (max-width: 760px) {
+    body { padding: 28px 14px 40px; }
+    .panel { padding: 26px 20px; border-radius: 22px; }
+    .panel::before { right: 20px; left: 20px; }
+    .stages { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .flow-arrow { width: auto; height: 26px; transform: rotate(-90deg); }
+    .brand span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top rise">
+    <div class="brand">Scary Town<span>TX System</span></div>
+    <a href="index.html" class="back-btn">
+      الرئيسية
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+  </div>
+
+  <header class="hero rise d1">
+    <span class="tag">Banned Team Guidelines</span>
+    <h1>قوانين وتعليمات <b>نظام الـTX</b></h1>
+    <p>Tx Text &amp; Spectate &amp; Banned Team Guidelines</p>
+  </header>
+
+  <!-- القسم الأول -->
+  <section class="panel rise d2">
+    <div class="panel-head">
+      <div class="icon-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div>
+        <small>Tx · Text</small>
+        <h2>طريقة ارسال التحذيرات</h2>
+      </div>
+    </div>
+
+    <p class="greeting">السلام عليكم ورحمة الله وبركاته، طريقة ارسال التحذيرات كالتالي:</p>
+
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-top">
+          <span class="stage-num">01</span>
+          <span class="stage-label">في حال مخالفة الشخص للمرة الأولى يتم ارسال <em>DM</em></span>
+        </div>
+        <ul class="list">
+          <li>الرجاء الألتزام في قوانين الرول بلاي.</li>
+          <li>توجه الدعم الفني مع تصوير آخر ٢٠ دقيقة.</li>
+        </ul>
+      </div>
+
+      <div class="stage">
+        <div class="stage-top">
+          <span class="stage-num">02</span>
+          <span class="stage-label">في حال عدم التجاوب يتم ارسال <em>Warn</em></span>
+        </div>
+        <ul class="list">
+          <li>توجه انتظار الدعم الفني مع تصوير آخر 20 دقيقة.</li>
+          <li>ممنوع الطلق في المناطق الآمنة.</li>
+          <li>الرجاء عدم استخدام مصطلحات خارج نطاق الرول بلاي.</li>
+          <li>الرجاء عدم التدخل في السيناريو.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warning-line">في حال عدم التزامك في طريقة التحذيرات سيتم محاسبتك.</div>
+
+    <div class="note">
+      <div class="note-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>
+        ملاحظة هامة
+      </div>
+      <div class="flow">
+        <div class="flow-step"><b>DM</b><span>المرة الأولى</span></div>
+        <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+        <div class="flow-step"><b>DM</b><span>بعد دقيقتين</span></div>
+        <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+        <div class="flow-step"><b>Warn</b><span>انتظر ٥ دقائق</span></div>
+        <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+        <div class="flow-step end"><b>باند</b><span>اذا ما جاء</span></div>
+      </div>
+      <p><strong>ملاحظة هامة:</strong> لازم ترسل DM مرتين وبينهم دقيقتين، وفي حال عدم الاستجابة ترسل وارن وتنتظر ٥ دقائق، وفي حال ما جاء يحق لك تبنيده.</p>
+    </div>
+  </section>
+
+  <!-- القسم الثاني -->
+  <section class="panel rise d3">
+    <div class="panel-head">
+      <div class="icon-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <small>Permission Rules</small>
+        <h2>قوانين الصلاحية</h2>
+      </div>
+    </div>
+
+    <p class="greeting">نود تذكير جميع من تم منحهم صلاحية <strong>TX</strong> بأن هذه الصلاحية تُعد من الصلاحيات الحساسة، وهي دليل على الثقة التي مُنحت لكم. لذلك نأمل من الجميع تحمل المسؤولية والالتزام الكامل بالأنظمة.</p>
+
+    <p class="lead-in" style="margin-top:0">نرجو منكم اخذ الحيطه والحذر في التعامل والالتزام الكامل بالقوانين التالية:</p>
+
+    <div class="rules">
+      <div class="rule"><p>مراجعة القوانين والتعليمات بشكل مستمر والتأكد من فهمها قبل مباشرة أي إجراء.</p></div>
+      <div class="rule"><p>أي خطأ أو إساءة استخدام للصلاحية غير مقبول، وسيتم التعامل معه وفقًا للإجراءات الإدارية.</p></div>
+      <div class="rule"><p>نعلم أن الصلاحيات الحالية محدودة، وهذا أمر مقصود في البداية لضمان اكتساب الخبرة والالتزام.</p></div>
+      <div class="rule"><p>كل شخص يثبت جدارته، والتزامه، وحسن تعامله، واستمراره في العمل سيتم منحه صلاحيات إضافية وفرصًا أكبر للترقية بإذن الله.</p></div>
+    </div>
+
+    <div class="thanks">شاكرين لكم جهودكم ونود رؤية مجتمع نظيف بمساعدتكم</div>
+  </section>
+
+  <footer class="footer rise d4">جميع الحقوق محفوظة &copy; <b>Al-Shiekh</b></footer>
+
+</div>
+
+<script src="bg.js"></script>
+</body>
+</html>

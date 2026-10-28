@@ -1,0 +1,40 @@
+/* ═══ Scary Town — Background (shared) ═══
+   خلفية داكنة هادئة: توهج علوي خافت + شبكة دقيقة + فينييت */
+html, body { background: #060507; }
+
+.bg {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  --mx: 50vw; --my: 25vh;
+  background: #060507;
+}
+.bg-glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(70% 50% at 50% -8%, rgba(150, 22, 38, .30), transparent 72%),
+    radial-gradient(60% 40% at 50% 112%, rgba(150, 22, 38, .12), transparent 70%);
+}
+.bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 25%, #000 0%, transparent 78%);
+          mask-image: radial-gradient(ellipse 85% 70% at 50% 25%, #000 0%, transparent 78%);
+}
+.bg-spot {
+  position: absolute; inset: 0;
+  background: radial-gradient(480px circle at var(--mx) var(--my), rgba(214,40,63,.07), transparent 65%);
+}
+.bg-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 45%, rgba(0,0,0,.65) 100%);
+}
+
+/* ═══ خلفية GIF: حط الملف في images/1f8z01n.gif ═══ */
+.bg-media {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(rgba(6,5,7,.50), rgba(6,5,7,.78)),
+    url("images/1f8z01n.gif") center / cover no-repeat;
+}
